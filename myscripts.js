@@ -33,3 +33,21 @@ class SoundEffectClick extends SoundEffect {
   }
 }
 const audioCtx = new AudioContext();
+
+// Todo: SoundEffektError für Fehlermeldung und ungewollte Aktionen z.B. bei Registerierung oder Login
+
+// ToDo: SoundEffektClickNav für NavButtons clicken
+
+// ToDo: SoundEffektClickCard für Karten anclicken
+
+// ToDo: SoundEffektCloseCard für Kartenansicht schließen
+
+// ToDo: SoundEffektClickOpenPack für openPackButton clciken
+
+// ToDo: SoundEffektPackAnimation für Pack-Animation
+
+// ToDo: SoundEffektLegendaryCardPull für legendäre Karten ziehen
+
+// ToDo: SoundEffektLogIn/Reg für erfolgreicher Login & Registrierung
+
+// ToDo: SoundEffektLogout für erfolgreichen Logout
