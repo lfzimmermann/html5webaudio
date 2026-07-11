@@ -18,8 +18,8 @@ class SoundEffect {
 class SoundEffectClick extends SoundEffect {
   constructor(ctx) {
     super(ctx);
-    const osc1 = new Oscillator(audioCtx, "100", "sine", 0);
-    const osc2 = new Oscillator(audioCtx, "200", "sine", 0.1);
+    const osc1 = new Oscillator(audioCtx, "400", "sine", 0);
+    const osc2 = new Oscillator(audioCtx, "600", "sine", 0.06);
 
     this.oscList.push(osc1, osc2);
     this.gain.gain.value = 1;
