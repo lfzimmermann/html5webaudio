@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en" onclick="new SoundEffectClick(audioCtx)">
+
+<head>
+  <meta charset="utf-8" />
+  <title>Web Audio API examples: Basics</title>
+  <meta name="description" content="Audio basics demo for Web Audio API" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script src="myscripts.js"></script>
+</head>
+
+<body>
+  <select id="typeWave" name="type">
+    <option value="square">square</option>
+    <option value="sine">sine</option>
+    <option value="triangle">triangle</option>
+    <option value="sawtooth">sawtooth</option>
+  </select>
+  <input type="range" id="frequency" min="0" max="440" />
+  <button id="playpause" onclick="clicked()">
+    <span>Play/Pause</span>
+  </button>
+</body>
+
+</html>
