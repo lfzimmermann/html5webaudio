@@ -46,6 +46,8 @@ const audioCtx = new AudioContext();
 
 // ToDo: SoundEffektPackAnimation für Pack-Animation
 
+// ToDo: SoundEffekteNormalCardPull für alle anderen Karten
+
 // ToDo: SoundEffektLegendaryCardPull für legendäre Karten ziehen
 
 // ToDo: SoundEffektLogIn/Reg für erfolgreicher Login & Registrierung
