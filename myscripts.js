@@ -40,6 +40,7 @@ class SoundEffect {
   }
 
 };
+
 class SoundEffectClick extends SoundEffect {
   constructor(ctx) {
     super(ctx);
@@ -81,30 +82,30 @@ class SoundEffectError extends SoundEffect {
     this.gain.gain.linearRampToValueAtTime(0, this.ctx.currentTime + 0.7);
   }
 }
-// ToDo: SoundEffektClickNav für NavButtons clicken
+// Done: SoundEffektClickNav (Swish) für NavButtons clicken
 class SoundEffectClickNav extends SoundEffect {
   constructor(ctx) {
     super(ctx);
 
-    const noise1 = new WhiteNoiseOscillator(ctx, 0, 0.8);
+    const noise1 = new WhiteNoiseOscillator(ctx, 0, 0.4);
 
 
     this.oscList.push(noise1);
     this.gain.gain.value = 0.001;
     
     const filter = this.ctx.createBiquadFilter();
-    filter.type = 'lowpass';
-    filter.frequency.value = 1000;
+    filter.type = 'highpass';
+    filter.frequency.setValueAtTime(500, ctx.currentTime);
+    filter.frequency.exponentialRampToValueAtTime(4000, this.ctx.currentTime + 0.4);
 
     this.oscList.forEach(osc => {
-      osc.osc.connect(filter);
-      osc.osc.connect(this.gain).connect(this.ctx.destination);
+      osc.osc.connect(filter).connect(this.gain).connect(this.ctx.destination);
       osc.osc.start(this.ctx.currentTime + osc.offset);
       osc.osc.stop(this.ctx.currentTime + 0.4);
     });
     
-    this.gain.gain.linearRampToValueAtTime(0.2, this.ctx.currentTime + 0.1);
-    this.gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.2);
+    this.gain.gain.linearRampToValueAtTime(0.2, this.ctx.currentTime + 0.05);
+    this.gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.4);
   }
 }
 // ToDo: SoundEffektClickCard für Karten anclicken
