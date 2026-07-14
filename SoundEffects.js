@@ -1,5 +1,5 @@
 let audioCtx = null;
-export class Oscillator {
+class Oscillator {
   constructor(ctx, freq, type, offset) {
     this.osc = ctx.createOscillator();
     this.osc.frequency.setValueAtTime(freq.toString(), ctx.currentTime);
@@ -8,7 +8,7 @@ export class Oscillator {
   }
 }
 
-export class WhiteNoiseOscillator {
+class WhiteNoiseOscillator {
   constructor(ctx, offset, duration) {
     this.ctx = ctx;
     this.offset = offset;
@@ -32,7 +32,7 @@ export class WhiteNoiseOscillator {
   }
 }
 
-export class SoundEffect {
+class SoundEffect {
   constructor(ctx) {
     this.ctx = ctx;
     this.oscList = [];
@@ -40,14 +40,14 @@ export class SoundEffect {
   }
 
 };
-export function getAudioCtx() {
-  if(!audioCtx) {
+function getAudioCtx() {
+  if (!audioCtx) {
     audioCtx = new AudioContext();
   }
   return audioCtx;
 }
 
-export class SoundEffectClick extends SoundEffect {
+class SoundEffectClick extends SoundEffect {
   constructor(ctx) {
     super(ctx);
     const osc1 = new Oscillator(audioCtx, 400, "sine", 0);
@@ -66,7 +66,7 @@ export class SoundEffectClick extends SoundEffect {
 }
 
 // Todo: SoundEffektError für Fehlermeldung und ungewollte Aktionen z.B. bei Registerierung oder Login
-export class SoundEffectError extends SoundEffect {
+class SoundEffectError extends SoundEffect {
   constructor(ctx) {
     super(ctx);
     const osc1 = new Oscillator(audioCtx, 523.25, "sawtooth", 0);
@@ -76,19 +76,19 @@ export class SoundEffectError extends SoundEffect {
     const osc5 = new Oscillator(audioCtx, 349.23, "square", 0.4);
     const osc6 = new Oscillator(audioCtx, 293.66, "square", 0.5);
 
+    this.gain.gain.value = 0.05;
     this.oscList.push(osc1, osc2, osc3, osc4, osc5, osc6);
-    this.gain.gain.value = 1;
     this.oscList.forEach(osc => {
       osc.osc.connect(this.gain).connect(this.ctx.destination);
       osc.osc.start(this.ctx.currentTime + osc.offset);
       osc.osc.stop(this.ctx.currentTime + osc.offset + 0.2);
     });
-    
+
     this.gain.gain.linearRampToValueAtTime(0, this.ctx.currentTime + 0.7);
   }
 }
 // Done: SoundEffektClickNav (Swish) für NavButtons clicken
-export class SoundEffectClickNav extends SoundEffect {
+class SoundEffectClickNav extends SoundEffect {
   constructor(ctx) {
     super(ctx);
 
@@ -97,7 +97,7 @@ export class SoundEffectClickNav extends SoundEffect {
 
     this.oscList.push(noise1);
     this.gain.gain.value = 0.001;
-    
+
     const filter = this.ctx.createBiquadFilter();
     filter.type = 'highpass';
     filter.frequency.setValueAtTime(500, ctx.currentTime);
@@ -108,13 +108,13 @@ export class SoundEffectClickNav extends SoundEffect {
       osc.osc.start(this.ctx.currentTime + osc.offset);
       osc.osc.stop(this.ctx.currentTime + 0.4);
     });
-    
+
     this.gain.gain.linearRampToValueAtTime(0.2, this.ctx.currentTime + 0.05);
     this.gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.4);
   }
 }
 // ToDo: SoundEffektClickCard für Karten anclicken
-export class SoundEffectCardOpen extends SoundEffect {
+class SoundEffectCardOpen extends SoundEffect {
   constructor(ctx) {
     super(ctx);
 
@@ -136,7 +136,7 @@ export class SoundEffectCardOpen extends SoundEffect {
 }
 
 // ToDo: SoundEffektCloseCard für Kartenansicht schließen
-export class SoundEffectCardClose extends SoundEffect {
+class SoundEffectCardClose extends SoundEffect {
   constructor(ctx) {
     super(ctx);
 
@@ -158,40 +158,40 @@ export class SoundEffectCardClose extends SoundEffect {
 }
 
 // ToDo: SoundEffektClickOpenPack für openPackButton clciken
-export class SoundEffectCardOpenPack extends SoundEffect {
+class SoundEffectCardOpenPack extends SoundEffect {
   constructor(ctx, out) {
     super(ctx, out);
 
-    const osc1 = new Oscillator(ctx, 523.25, "triangle", 0);
-    const osc2 = new Oscillator(ctx, 659.25, "triangle", 0.06);
-    const osc3 = new Oscillator(ctx, 783.99, "triangle", 0.12);
-    const osc4 = new Oscillator(ctx, 1046.50, "triangle", 0.16);
+    const osc1 = new Oscillator(this.ctx, 523.25, "triangle", 0);
+    const osc2 = new Oscillator(this.ctx, 659.25, "triangle", 0.06);
+    const osc3 = new Oscillator(this.ctx, 783.99, "triangle", 0.12);
+    const osc4 = new Oscillator(this.ctx, 1046.50, "triangle", 0.16);
 
     this.oscList.push(osc1, osc2, osc3, osc4);
-    this.gain.gain.setValueAtTime(0.001, ctx.currentTime);
+    this.gain.gain.setValueAtTime(0.001, this.ctx.currentTime);
 
     this.oscList.forEach(osc => {
       osc.osc.connect(this.gain).connect(this.ctx.destination);
-      osc.osc.start(ctx.currentTime + osc.offset);
-      osc.osc.stop(ctx.currentTime + osc.offset + 0.25);
+      osc.osc.start(this.ctx.currentTime + osc.offset);
+      osc.osc.stop(this.ctx.currentTime + osc.offset + 0.25);
     });
 
-    this.gain.gain.linearRampToValueAtTime(0.12, jetzt + 0.03);
-    this.gain.gain.exponentialRampToValueAtTime(0.001, jetzt + 0.45);
+    this.gain.gain.linearRampToValueAtTime(0.12, this.ctx.currentTime + 0.03);
+    this.gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.45);
   }
 }
 
 // ToDo: SoundEffektPackAnimation für Pack-Animation
-export class SoundEffectAnimation extends SoundEffect {
+class SoundEffectAnimation extends SoundEffect {
   constructor(ctx) {
     super(ctx);
 
     const osc1 = new Oscillator(ctx, 392.00, "triangle", 0);
     this.oscList.push(osc1);
 
-    osc.osc.connect(this.gain).connect(this.ctx.destination);
-    osc.osc.start(this.ctx.currentTime + osc.offset);
-    osc.osc.stop(this.ctx.currentTime + 0.90);
+    osc1.osc.connect(this.gain).connect(this.ctx.destination);
+    osc1.osc.start(this.ctx.currentTime + osc1.offset);
+    osc1.osc.stop(this.ctx.currentTime + 0.90);
 
     this.gain.gain.setValueAtTime(0.001, this.ctx.currentTime + 0.000);
     this.gain.gain.linearRampToValueAtTime(0.05, this.ctx.currentTime + 0.003);
@@ -227,7 +227,7 @@ export class SoundEffectAnimation extends SoundEffect {
   }
 }
 
-export class SoundEffectRevealHaeufig extends SoundEffect {
+class SoundEffectRevealHaeufig extends SoundEffect {
   constructor(ctx) {
     super(ctx);
 
@@ -250,7 +250,7 @@ export class SoundEffectRevealHaeufig extends SoundEffect {
   }
 }
 
-export class SoundEffectRevealUngewoehnlich extends SoundEffect {
+class SoundEffectRevealUngewoehnlich extends SoundEffect {
   constructor(ctx) {
     super(ctx);
     const jetzt = this.ctx.currentTime;
@@ -277,7 +277,7 @@ export class SoundEffectRevealUngewoehnlich extends SoundEffect {
   }
 }
 
-export class SoundEffectRevealSelten extends SoundEffect {
+class SoundEffectRevealSelten extends SoundEffect {
   constructor(ctx) {
     super(ctx);
     const jetzt = this.ctx.currentTime;
@@ -305,7 +305,7 @@ export class SoundEffectRevealSelten extends SoundEffect {
   }
 }
 
-export class SoundEffectRevealLegendaer extends SoundEffectRevealSelten {
+class SoundEffectRevealLegendaer extends SoundEffectRevealSelten {
   constructor(ctx) {
     super(ctx);
 
@@ -321,7 +321,7 @@ export class SoundEffectRevealLegendaer extends SoundEffectRevealSelten {
     Pitch.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 3.50);
 
     const Shimmer = this.ctx.createOscillator();
-    Shimmer.frequency.value = 7;
+    Shimmer.frequency.value = 15;
     const deepShimmer = this.ctx.createGain();
     deepShimmer.gain.value = 0.025;
     Shimmer.connect(deepShimmer).connect(Pitch.gain);
@@ -352,7 +352,7 @@ export class SoundEffectRevealLegendaer extends SoundEffectRevealSelten {
 }
 
 // ToDo: SoundEffektLogIn/Reg für erfolgreicher Login & Registrierung
-export class SoundEffectLogin extends SoundEffect {
+class SoundEffectLogin extends SoundEffect {
   constructor(ctx) {
     super(ctx);
 
@@ -375,7 +375,7 @@ export class SoundEffectLogin extends SoundEffect {
     this.gain.gain.linearRampToValueAtTime(0.12, this.ctx.currentTime + 0.24);
     this.gain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.70);
 
-    const osc4 = new Oscillator(ctx, 783.99, "sine", 0.18);
+    const osc4 = new Oscillator(ctx, 783.99, "triangle", 0.18);
 
     this.oscList.push(osc4);
 
@@ -386,14 +386,14 @@ export class SoundEffectLogin extends SoundEffect {
 }
 
 // ToDo: SoundEffektLogout für erfolgreichen Logout
-export class SoundEffectLogout extends SoundEffect {
+class SoundEffectLogout extends SoundEffect {
   constructor(ctx) {
     super(ctx);
 
-    const osc1 = new Oscillator(ctx, 392.00, "sine", 0);
-    const osc2 = new Oscillator(ctx, 329.63, "sine", 0.09);
-    const osc3 = new Oscillator(ctx, 261.63, "sine", 0.18);
-    const osc4 = new Oscillator(ctx, 130.81, "sine", 0.18);
+    const osc1 = new Oscillator(ctx, 392.00, "triangle", 0);
+    const osc2 = new Oscillator(ctx, 329.63, "triangle", 0.09);
+    const osc3 = new Oscillator(ctx, 261.63, "triangle", 0.18);
+    const osc4 = new Oscillator(ctx, 130.81, "triangle", 0.18);
 
     this.oscList.push(osc1, osc2, osc3, osc4);
 

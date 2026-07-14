@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" onclick="new SoundEffectClick(audioCtx)">
+<html lang="en" onclick="">
 
 <head>
   <meta charset="utf-8" />
@@ -7,7 +7,7 @@
   <meta name="description" content="Audio basics demo for Web Audio API" />
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
   <link rel="stylesheet" type="text/css" href="style.css" />
-  <script src="myscripts.js"></script>
+  <script src="SoundEffects.js"></script>
 </head>
 
 <body>
@@ -18,8 +18,44 @@
     <option value="sawtooth">sawtooth</option>
   </select>
   <input type="range" id="frequency" min="0" max="440" />
-  <button id="playpause" onclick="clicked()">
-    <span>Play/Pause</span>
+  <button id="playpause" onclick="new SoundEffectClick(getAudioCtx())">
+    <span>SoundEffectClick</span>
+  </button>
+  <button id="playpause" onclick="new SoundEffectClickNav(getAudioCtx())">
+    <span>SoundEffectClickNav</span>
+  </button>
+  <button id="playpause" onclick="new SoundEffectError(getAudioCtx())">
+    <span>SoundEffectError</span>
+  </button>
+  <button id="playpause" onclick="new SoundEffectCardOpen(getAudioCtx())">
+    <span>SoundEffectCardOpen</span>
+  </button>
+  <button id="playpause" onclick="new SoundEffectCardClose(getAudioCtx())">
+    <span>SoundEffectCardClose</span>
+  </button>
+  <button id="playpause" onclick="new SoundEffectCardOpenPack(getAudioCtx())">
+    <span>SoundEffectCardOpenPack</span>
+  </button>
+  <button id="playpause" onclick="new SoundEffectAnimation(getAudioCtx())">
+    <span>SoundEffectAnimation</span>
+  </button>
+  <button id="playpause" onclick="new SoundEffectRevealHaeufig(getAudioCtx())">
+    <span>SoundEffectRevealHaeufig</span>
+  </button>
+  <button id="playpause" onclick="new SoundEffectRevealUngewoehnlich(getAudioCtx())">
+    <span>SoundEffectRevealUngewoehnlich</span>
+  </button>
+  <button id="playpause" onclick="new SoundEffectRevealSelten(getAudioCtx())">
+    <span>SoundEffectRevealSelten</span>
+  </button>
+  <button id="playpause" onclick="new SoundEffectRevealLegendaer(getAudioCtx())">
+    <span>SoundEffectRevealLegendaer</span>
+  </button>
+  <button id="playpause" onclick="new SoundEffectLogin(getAudioCtx())">
+    <span>SoundEffectLogin</span>
+  </button>
+  <button id="playpause" onclick="new SoundEffectLogout(getAudioCtx())">
+    <span>SoundEffectLogout</span>
   </button>
 </body>
 
