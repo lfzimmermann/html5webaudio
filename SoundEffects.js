@@ -1,5 +1,5 @@
 let audioCtx = null;
-class Oscillator {
+export class Oscillator {
   constructor(ctx, freq, type, offset) {
     this.osc = ctx.createOscillator();
     this.osc.frequency.setValueAtTime(freq.toString(), ctx.currentTime);
@@ -8,7 +8,7 @@ class Oscillator {
   }
 }
 
-class WhiteNoiseOscillator {
+export class WhiteNoiseOscillator {
   constructor(ctx, offset, duration) {
     this.ctx = ctx;
     this.offset = offset;
@@ -32,7 +32,7 @@ class WhiteNoiseOscillator {
   }
 }
 
-class SoundEffect {
+export class SoundEffect {
   constructor(ctx) {
     this.ctx = ctx;
     this.oscList = [];
@@ -47,7 +47,7 @@ function getAudioCtx() {
   return audioCtx;
 }
 
-class SoundEffectClick extends SoundEffect {
+export class SoundEffectClick extends SoundEffect {
   constructor(ctx) {
     super(ctx);
     const osc1 = new Oscillator(audioCtx, 400, "sine", 0);
@@ -66,7 +66,7 @@ class SoundEffectClick extends SoundEffect {
 }
 
 // Todo: SoundEffektError für Fehlermeldung und ungewollte Aktionen z.B. bei Registerierung oder Login
-class SoundEffectError extends SoundEffect {
+export class SoundEffectError extends SoundEffect {
   constructor(ctx) {
     super(ctx);
     const osc1 = new Oscillator(audioCtx, 523.25, "sawtooth", 0);
@@ -88,7 +88,7 @@ class SoundEffectError extends SoundEffect {
   }
 }
 // Done: SoundEffektClickNav (Swish) für NavButtons clicken
-class SoundEffectClickNav extends SoundEffect {
+export class SoundEffectClickNav extends SoundEffect {
   constructor(ctx) {
     super(ctx);
 
@@ -114,7 +114,7 @@ class SoundEffectClickNav extends SoundEffect {
   }
 }
 // ToDo: SoundEffektClickCard für Karten anclicken
-class SoundEffectCardOpen extends SoundEffect {
+export class SoundEffectCardOpen extends SoundEffect {
   constructor(ctx) {
     super(ctx);
 
@@ -136,7 +136,7 @@ class SoundEffectCardOpen extends SoundEffect {
 }
 
 // ToDo: SoundEffektCloseCard für Kartenansicht schließen
-class SoundEffectCardClose extends SoundEffect {
+export class SoundEffectCardClose extends SoundEffect {
   constructor(ctx) {
     super(ctx);
 
@@ -158,7 +158,7 @@ class SoundEffectCardClose extends SoundEffect {
 }
 
 // ToDo: SoundEffektClickOpenPack für openPackButton clciken
-class SoundEffectCardOpenPack extends SoundEffect {
+export class SoundEffectCardOpenPack extends SoundEffect {
   constructor(ctx, out) {
     super(ctx, out);
 
@@ -182,7 +182,7 @@ class SoundEffectCardOpenPack extends SoundEffect {
 }
 
 // ToDo: SoundEffektPackAnimation für Pack-Animation
-class SoundEffectAnimation extends SoundEffect {
+export class SoundEffectAnimation extends SoundEffect {
   constructor(ctx) {
     super(ctx);
 
@@ -227,7 +227,7 @@ class SoundEffectAnimation extends SoundEffect {
   }
 }
 
-class SoundEffectRevealHaeufig extends SoundEffect {
+export class SoundEffectRevealHaeufig extends SoundEffect {
   constructor(ctx) {
     super(ctx);
 
@@ -250,7 +250,7 @@ class SoundEffectRevealHaeufig extends SoundEffect {
   }
 }
 
-class SoundEffectRevealUngewoehnlich extends SoundEffect {
+export class SoundEffectRevealUngewoehnlich extends SoundEffect {
   constructor(ctx) {
     super(ctx);
     const jetzt = this.ctx.currentTime;
@@ -277,7 +277,7 @@ class SoundEffectRevealUngewoehnlich extends SoundEffect {
   }
 }
 
-class SoundEffectRevealSelten extends SoundEffect {
+export class SoundEffectRevealSelten extends SoundEffect {
   constructor(ctx) {
     super(ctx);
     const jetzt = this.ctx.currentTime;
@@ -305,7 +305,7 @@ class SoundEffectRevealSelten extends SoundEffect {
   }
 }
 
-class SoundEffectRevealLegendaer extends SoundEffectRevealSelten {
+export class SoundEffectRevealLegendaer extends SoundEffectRevealSelten {
   constructor(ctx) {
     super(ctx);
 
@@ -352,7 +352,7 @@ class SoundEffectRevealLegendaer extends SoundEffectRevealSelten {
 }
 
 // ToDo: SoundEffektLogIn/Reg für erfolgreicher Login & Registrierung
-class SoundEffectLogin extends SoundEffect {
+export class SoundEffectLogin extends SoundEffect {
   constructor(ctx) {
     super(ctx);
 
@@ -386,7 +386,7 @@ class SoundEffectLogin extends SoundEffect {
 }
 
 // ToDo: SoundEffektLogout für erfolgreichen Logout
-class SoundEffectLogout extends SoundEffect {
+export class SoundEffectLogout extends SoundEffect {
   constructor(ctx) {
     super(ctx);
 
