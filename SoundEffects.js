@@ -40,7 +40,7 @@ export class SoundEffect {
   }
 
 };
-function getAudioCtx() {
+export function getAudioCtx() {
   if (!audioCtx) {
     audioCtx = new AudioContext();
   }
@@ -109,7 +109,7 @@ export class SoundEffectClickNav extends SoundEffect {
       osc.osc.stop(this.ctx.currentTime + 0.4);
     });
 
-    this.gain.gain.linearRampToValueAtTime(0.2, this.ctx.currentTime + 0.05);
+    this.gain.gain.linearRampToValueAtTime(0.06, this.ctx.currentTime + 0.05);
     this.gain.gain.exponentialRampToValueAtTime(0.01, this.ctx.currentTime + 0.4);
   }
 }
@@ -158,7 +158,7 @@ export class SoundEffectCardClose extends SoundEffect {
 }
 
 // ToDo: SoundEffektClickOpenPack für openPackButton clciken
-export class SoundEffectCardOpenPack extends SoundEffect {
+export class SoundEffectOpenPack extends SoundEffect {
   constructor(ctx, out) {
     super(ctx, out);
 
@@ -227,7 +227,7 @@ export class SoundEffectAnimation extends SoundEffect {
   }
 }
 
-export class SoundEffectRevealHaeufig extends SoundEffect {
+export class SoundEffectRevealCommon extends SoundEffect {
   constructor(ctx) {
     super(ctx);
 
@@ -250,7 +250,7 @@ export class SoundEffectRevealHaeufig extends SoundEffect {
   }
 }
 
-export class SoundEffectRevealUngewoehnlich extends SoundEffect {
+export class SoundEffectRevealUncommon extends SoundEffect {
   constructor(ctx) {
     super(ctx);
     const jetzt = this.ctx.currentTime;
@@ -277,7 +277,7 @@ export class SoundEffectRevealUngewoehnlich extends SoundEffect {
   }
 }
 
-export class SoundEffectRevealSelten extends SoundEffect {
+export class SoundEffectRevealRare extends SoundEffect {
   constructor(ctx) {
     super(ctx);
     const jetzt = this.ctx.currentTime;
@@ -305,7 +305,7 @@ export class SoundEffectRevealSelten extends SoundEffect {
   }
 }
 
-export class SoundEffectRevealLegendaer extends SoundEffectRevealSelten {
+export class SoundEffectRevealLegendary extends SoundEffectRevealRare {
   constructor(ctx) {
     super(ctx);
 
